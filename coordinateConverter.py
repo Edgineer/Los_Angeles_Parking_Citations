@@ -2,6 +2,10 @@ import pandas as pd
 import requests
 import json
 import argparse
+from os import remove
+
+#Next Steps: To convert more than 200 coordinates at a time use for loops and create more calls to the API
+#Make the zip() into a list(zip()) then iterate over 200 coords at a time
 
 #Command line argument. filename of CSV with data
 parser = argparse.ArgumentParser(description="Convert US Feet Coordinates to WGS84")
@@ -27,6 +31,7 @@ attr = str('&s_srs=102645&t_srs=4326')
 with open("formattedCoords.txt", "r") as file:
 	coords = file.read()
 file.close()
+remove('formattedCoords.txt')
 
 #Making HTTP Request to the API
 url = http + coords + attr
@@ -52,4 +57,5 @@ data['Latitude'] = df['lat']
 data['Longitude'] = df['lon']
 print data.head(5)
 vital_columns = ["Ticket number","Issue Date","Issue time","Make","Body Style","Color","Location","Violation code","Violation Description","Fine amount","Latitude","Longitude"]
-data.to_csv("Parking_Citations_sample_trans.csv",columns=vital_columns,header=vital_columns,index=False)
+convertedFile = "translated_"+arg.filename
+data.to_csv(convertedFile,columns=vital_columns,header=vital_columns,index=False)
