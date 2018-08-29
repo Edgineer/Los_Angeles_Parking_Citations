@@ -8,9 +8,14 @@ parser.add_argument('filename',type=str,help="filename of CSV file with LA Parki
 arg = parser.parse_args()
 
 #Read the CSV file and convert it into a list of JSON dictionaries
+rows = list()
 with open(arg.filename) as file:
 	reader = csv.DictReader(file)
-	rows = list(reader)
+	#Convert Lat & Long to float
+	for row in reader:
+		row["Latitude"] = float(row["Latitude"])
+		row["Longitude"] = float(row["Longitude"])
+		rows.append(row)
 
 #Convert into JSON
 convertedFile = "JSONtranslated_"+arg.filename
