@@ -1,7 +1,8 @@
 import argparse
 import math
 
-#Command line argument. filename of CSV with data
+#Add two coordinates as command line arguments
+#ex. python coordDistanceCalculator latP1 lonP1 latP2 lonP2
 parser = argparse.ArgumentParser(description="Get distance (Km) between two WGS84 Coodrinates")
 parser.add_argument('lat1',type=float,help="la1")
 parser.add_argument('lon1',type=float,help="lo1")
@@ -10,6 +11,8 @@ parser.add_argument('lon2',type=float,help="lo2")
 arg = parser.parse_args()
 
 earth_rad = 6371 #km
+
+#math to compute the distance(km)
 dLat = math.radians(arg.lat2-arg.lat1)
 dLon = math.radians(arg.lon2-arg.lon1)
 a = math.sin(dLat/2)**2 + math.cos(math.radians(arg.lat1)) * math.cos(math.radians(arg.lat2)) * math.sin(dLon/2)**2
