@@ -43,8 +43,8 @@ print "Response Code: " + str(page.status_code)
 
 #Grab the HTTP response and format to JSON
 resData = json.loads(content)
-lats = []
-lons = []
+lats = list()
+lons = list()
 for d in resData:
 	lats.append(d.get("y"))
 	lons.append(d.get("x"))
