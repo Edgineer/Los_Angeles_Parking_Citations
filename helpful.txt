@@ -1,0 +1,21 @@
+Commands
+-----------------
+$ git push heroku master
+$ heroku logs
+$ grep -v 99999,99999 file.csv > parsedFile.csv
+
+Tasks
+---------------
+Make Android App
+Figure out optimal distance for search range
+Iterate through parsed data to convert coordinates
+set up global min,max lat and lon to not query the database all the time
+fix the github repository to include update (dont lose the updates brah!)
+
+New Data Process
+--------------------------------------------------
+1) Download new data set
+2) Parse out records with no latitude,longitude
+3) Convert coordinates
+4) convert to json
+5) add to the databse
